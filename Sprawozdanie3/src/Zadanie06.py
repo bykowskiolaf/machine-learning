@@ -4,6 +4,18 @@ import pandas as pd
 from pathlib import Path
 from scipy.stats import chi2, chi2_contingency
 
+def save_image(fig, filename):
+    src_dir = Path(__file__).resolve().parent
+    project_dir = src_dir.parent
+    output_path = project_dir / "images" / filename
+    if output_path is not None:
+        output = Path(output_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(output, dpi=150, bbox_inches="tight")
+        print("Zapisano wykres:", output)
+    plt.close(fig)
+
+
 class Zad06:
     def __init__(self):
         src_dir = Path(__file__).resolve().parent
@@ -33,11 +45,12 @@ class Zad06:
 
         # narysowany rozkład Chi^2 dla odpowiedniej ilości stopni swobody, wartość krytyczna i wartość otrzymana z danych
         x = np.arange(0, 640, 1)
+        fig, ax = plt.subplots(figsize=(16, 5))
         plt.plot(x, chi2.pdf(x, df=2))
         plt.axvline(x=5.99146, color='red')
         plt.axvline(x=chi2_stat, color='purple')
         plt.xlim(0, x[-1])
-        plt.show()
+        save_image(fig, "zad06_distrib.png")
 
         # miary siły związku
         # V-Cramera [0, 1]:

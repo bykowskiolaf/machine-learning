@@ -25,7 +25,6 @@ class Zad07:
         print("expected frequencies:\n", expected)
 
         # Wartość krytyczna na poziomie istotności 0.05 przy 1 stopniu swobody = 3.84146
-        # Wartość uzyskana z testu = 26.23497454415329
         # wart. z testu > wart. kryt => są przesłanki do odrzucenia H_0 na założonym poziomie istotności, czyli do stwierdzenia korelacji
 
         # miary siły związku
